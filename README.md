@@ -1,2 +1,2 @@
 # nand2tetris
-Project submissions for the nand2tetris course
+Project files for the nand2tetris course
