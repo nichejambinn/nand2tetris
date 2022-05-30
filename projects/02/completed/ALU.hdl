@@ -65,5 +65,12 @@ CHIP ALU {
 
     // negate the output ?
     Not16(in=fout, out=Notfout);
-    Mux16(a=fout, b=Notfout, sel=no, out=out);
+    Mux16(a=fout, b=Notfout, sel=no, out=out, out[0..7]=zin1, out[8..15]=zin2, out[15]=ng);
+    // we set ng 1 if out<0 - 2s complement!
+
+    // set zr 1 if out==0
+    Or8Way(in=zin1, out=z1);
+    Or8Way(in=zin2, out=z2);
+    Or(a=z1, b=z2, out=z1Orz2);
+    Not(in=z1Orz2, out=zr);
 }
